@@ -1,2 +1,14 @@
 ---
 # tasks file for ansible-role-node
+# Make sure we're on an updated version of node
+- name: Install n
+  ansible.builtin.shell: |
+    npm install -g n
+  become: true
+
+- name: Install lts and node latest
+  ansible.builtin.shell: |
+    n lts
+    n latest
+    chown -R ubuntu /usr/local
+  become: true
